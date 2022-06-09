@@ -1,24 +1,31 @@
-import logo from './logo.svg';
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import React, { useEffect, useState } from 'react';
+import { Route, Routes } from 'react-router-dom';
+import axios from 'axios';
+
+import PostList from './post/PostList';
+import PostForm from './post/PostForm';
+import Post from './post/Post';
 
 function App() {
+  const [posts, setPosts] = useState([]);
+
+  const getPosts = () => {
+    axios.get('http://localhost/api/posts').then((response) => {
+      console.log('get posts called.');
+      setPosts(response.data.posts);
+    });
+  };
+
+  useEffect(getPosts, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Routes>
+      <Route path="/" element={<PostList posts={posts} />} />
+      <Route path="/new" element={<PostForm />} />
+      <Route path="/read" element={<Post />} />
+    </Routes>
   );
 }
 
