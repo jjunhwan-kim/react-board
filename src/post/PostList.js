@@ -1,7 +1,13 @@
 import React from 'react';
-import { Container, Table } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+import { Button, Container, Table } from 'react-bootstrap';
+import PostListItem from './PostListItem';
 
 const PostList = ({ posts }) => {
+  const postList = posts.map((post) => {
+    return <PostListItem key={post.id} post={post} />;
+  });
+
   return (
     <Container>
       <h1>Post List</h1>
@@ -12,17 +18,11 @@ const PostList = ({ posts }) => {
             <th>제목</th>
           </tr>
         </thead>
-        <tbody>
-          {posts.map((post) => {
-            return (
-              <tr>
-                <td>{post.id}</td>
-                <td>{post.title}</td>
-              </tr>
-            );
-          })}
-        </tbody>
+        <tbody>{postList}</tbody>
       </Table>
+      <Link to="/create">
+        <Button variant="primary">등록</Button>
+      </Link>
     </Container>
   );
 };
