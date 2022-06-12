@@ -1,9 +1,19 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 import { Button, Container, Table } from 'react-bootstrap';
 import PostListItem from './PostListItem';
 
-const PostList = ({ posts }) => {
+const PostList = () => {
+  const [posts, setPosts] = useState([]);
+
+  useEffect(() => {
+    axios.get('http://localhost/api/posts').then((response) => {
+      console.log('GET /api/posts called.');
+      setPosts(response.data.posts);
+    });
+  }, []);
+
   const postList = posts.map((post) => {
     return <PostListItem key={post.id} post={post} />;
   });
