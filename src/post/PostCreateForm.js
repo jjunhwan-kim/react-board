@@ -21,7 +21,7 @@ const PostCreateForm = () => {
 
   const onSubmit = (e) => {
     axios.post('http://localhost/api/posts', post).then((response) => {
-      console.log('POST api/posts called.');
+      console.log('POST /api/posts called.');
       navigate('/');
     });
   };

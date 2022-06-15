@@ -1,5 +1,5 @@
-import { Button, Container, Form } from 'react-bootstrap';
 import { Link, useLocation } from 'react-router-dom';
+import { Button, Container, Form } from 'react-bootstrap';
 
 const Post = () => {
   const post = useLocation().state.post;
