@@ -23,7 +23,7 @@ const PostEditForm = () => {
 
   const onModify = (e) => {
     axios
-      .put('http://localhost/api/posts/' + modifiedPost.id, modifiedPost)
+      .put('/api/posts/' + modifiedPost.id, modifiedPost)
       .then((response) => {
         console.log('PUT /api/posts/' + modifiedPost.id + ' called.');
         navigate('/');
@@ -32,7 +32,7 @@ const PostEditForm = () => {
 
   const onDelete = (e) => {
     axios
-      .delete('http://localhost/api/posts/' + modifiedPost.id, modifiedPost)
+      .delete('/api/posts/' + modifiedPost.id, modifiedPost)
       .then((response) => {
         console.log('DELETE /api/posts/' + modifiedPost.id + ' called.');
         navigate('/');
